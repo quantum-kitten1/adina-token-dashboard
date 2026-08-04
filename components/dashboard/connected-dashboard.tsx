@@ -1481,7 +1481,7 @@ function RoadmapSection() {
             items={[
               "Decentralized Employment Marketplace",
               "Non-Custodial Wallet",
-              "Staking",
+              "Smart Contract Hub",
             ]}
             itemStyle={{ color: "#8b5cf6", type: "dot" as const }}
             textColor="#c9c9d6"
@@ -1522,7 +1522,7 @@ function RoadmapSection() {
             period="Later"
             items={[
               "Gig Economy Platform",
-              "Smart Contract Hub",
+              "Staking",
               "On-chain reputation",
             ]}
             itemStyle={{ color: "#3d3d52", type: "dot" as const }}
