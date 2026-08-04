@@ -381,7 +381,58 @@ export function LandingView({ countdown, onOpenModal }: LandingViewProps) {
         </div>
       </div>
 
-      <div style={{ height: 72 }} />
+      <footer
+        style={{
+          maxWidth: 1240,
+          margin: "0 auto",
+          padding: "32px 48px 56px",
+        }}
+      >
+        <div
+          style={{
+            paddingTop: 24,
+            borderTop: "1px solid rgba(255,255,255,.08)",
+            display: "flex",
+            gap: 12,
+            alignItems: "flex-start",
+          }}
+        >
+          <span
+            style={{
+              flex: "none",
+              marginTop: 1,
+              width: 18,
+              height: 18,
+              borderRadius: 999,
+              border: "1.5px solid #8fbcff",
+              color: "#8fbcff",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              fontSize: 11,
+              fontWeight: 800,
+            }}
+          >
+            i
+          </span>
+          <p
+            style={{
+              margin: 0,
+              fontSize: 12,
+              lineHeight: 1.6,
+              color: "#7e7e95",
+              maxWidth: 920,
+            }}
+          >
+            The Adina (ADINA) token is designed exclusively as a functional
+            utility and governance token for platform access, fee settlement,
+            and protocol voting within the Adina Labs ecosystem. Adina token
+            does not constitute a security, financial instrument, equity, debt,
+            or investment contract in any jurisdiction, nor does it grant any
+            right to profits, dividends, or financial returns.
+          </p>
+        </div>
+      </footer>
     </div>
   );
 }

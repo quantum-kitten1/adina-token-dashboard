@@ -2110,21 +2110,44 @@ function DashboardFooter() {
         >
           i
         </span>
-        <p
+        <div
           style={{
-            margin: 0,
-            fontSize: 12,
-            lineHeight: 1.6,
-            color: "#7e7e95",
+            display: "flex",
+            flexDirection: "column",
+            gap: 10,
           }}
         >
-          The Adina Labs Dashboard is a non-custodial, read-only interface. It
-          displays information about a user&apos;s connected wallet, the ADINA
-          token, governance, staking, and platform activity. It does not hold,
-          transmit, exchange, or process any value. All transactional actions
-          are executed by the user&apos;s own wallet or clearly identified
-          third-party providers.
-        </p>
+          <p
+            style={{
+              margin: 0,
+              fontSize: 12,
+              lineHeight: 1.6,
+              color: "#7e7e95",
+            }}
+          >
+            The Adina (ADINA) token is designed exclusively as a functional
+            utility and governance token for platform access, fee settlement,
+            and protocol voting within the Adina Labs ecosystem. Adina token
+            does not constitute a security, financial instrument, equity, debt,
+            or investment contract in any jurisdiction, nor does it grant any
+            right to profits, dividends, or financial returns.
+          </p>
+          <p
+            style={{
+              margin: 0,
+              fontSize: 12,
+              lineHeight: 1.6,
+              color: "#7e7e95",
+            }}
+          >
+            The Adina Labs Dashboard is a non-custodial, read-only interface. It
+            displays information about a user&apos;s connected wallet, the ADINA
+            token, governance, staking, and platform activity. It does not hold,
+            transmit, exchange, or process any value. All transactional actions
+            are executed by the user&apos;s own wallet or clearly identified
+            third-party providers.
+          </p>
+        </div>
       </div>
     </footer>
   );
