@@ -299,13 +299,13 @@ export function LandingView({ countdown, onOpenModal }: LandingViewProps) {
                 letterSpacing: "-0.02em",
               }}
             >
-              $9.6M{" "}
+              $0{" "}
               <span style={{ fontSize: 15, fontWeight: 600, color: "#8a8a9c" }}>
                 raised of $15M target
               </span>
             </span>
             <span style={{ fontSize: 13, fontWeight: 700, color: "#c9b8ff" }}>
-              64% subscribed
+              Sale not open yet
             </span>
           </div>
           <div
@@ -319,7 +319,7 @@ export function LandingView({ countdown, onOpenModal }: LandingViewProps) {
           >
             <div
               style={{
-                width: "64%",
+                width: "0%",
                 height: "100%",
                 background: "linear-gradient(90deg,#8b5cf6,#a78bfa)",
                 boxShadow: "0 0 16px rgba(139,92,246,.6)",

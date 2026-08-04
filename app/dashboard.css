@@ -57,7 +57,7 @@
 }
 
 .dashboard-fade-up {
-  animation: dashboard-fadeUp 0.5s ease both;
+  animation: dashboard-fadeUp 0.5s ease forwards;
 }
 
 .dashboard-pulse-dot {

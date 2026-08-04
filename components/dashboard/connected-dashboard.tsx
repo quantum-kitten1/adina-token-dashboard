@@ -13,6 +13,10 @@ type ConnectedDashboardProps = {
   voted: boolean;
   onSelectOption: (key: VoteOptionKey) => void;
   onCastVote: () => void;
+  tokenBalanceLabel?: string;
+  tokenSymbol?: string;
+  balanceIsLive?: boolean;
+  portfolioValueLabel?: string;
 };
 
 const ONBOARDING_STEPS = [
@@ -195,13 +199,17 @@ export function ConnectedDashboard({
   voted,
   onSelectOption,
   onCastVote,
+  tokenBalanceLabel = "235",
+  tokenSymbol = "ADINA",
+  balanceIsLive = false,
+  portfolioValueLabel = "$39.95",
 }: ConnectedDashboardProps) {
   const canVote = selected !== null && !voted;
   const voteBtnLabel = voted ? "Vote submitted" : "Cast vote";
   const voteHint = voted
-    ? "Your 235 votes were recorded."
+    ? `Your ${tokenBalanceLabel} votes were recorded.`
     : selected
-      ? "Casting 235 votes."
+      ? `Casting ${tokenBalanceLabel} votes.`
       : "Cast your first vote.";
 
   return (
@@ -503,12 +511,12 @@ export function ConnectedDashboard({
                     lineHeight: 0.9,
                   }}
                 >
-                  235
+                  {tokenBalanceLabel}
                 </span>
                 <span
                   style={{ fontSize: 19, fontWeight: 700, color: "#c9b8ff" }}
                 >
-                  ADINA
+                  {tokenSymbol}
                 </span>
               </div>
               <div
@@ -519,7 +527,9 @@ export function ConnectedDashboard({
                   marginTop: 9,
                 }}
               >
-                Acquired for $39.95 at IDO
+                {balanceIsLive
+                  ? "On-chain balance (Base)"
+                  : "Preview balance — token not live yet"}
               </div>
             </div>
             <div
@@ -541,7 +551,9 @@ export function ConnectedDashboard({
               >
                 PORTFOLIO VALUE
               </div>
-              <div style={{ fontSize: 28, fontWeight: 700 }}>$39.95</div>
+              <div style={{ fontSize: 28, fontWeight: 700 }}>
+                {portfolioValueLabel}
+              </div>
             </div>
             <div
               style={{
@@ -563,7 +575,7 @@ export function ConnectedDashboard({
                 VOTING POWER
               </div>
               <div style={{ fontSize: 28, fontWeight: 700, color: "#c9b8ff" }}>
-                235{" "}
+                {tokenBalanceLabel}{" "}
                 <span
                   style={{ fontSize: 14, color: "#8a8a9c", fontWeight: 600 }}
                 >

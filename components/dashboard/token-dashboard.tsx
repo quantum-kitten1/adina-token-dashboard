@@ -1,8 +1,9 @@
 "use client";
 
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 import { useAppKit } from "@reown/appkit/react";
-import { useAccount, useDisconnect } from "wagmi";
+import { useAccount, useDisconnect, useReadContract } from "wagmi";
+import { formatUnits, type Address } from "viem";
 import { DashboardHeader } from "@/components/dashboard/dashboard-header";
 import { LandingView } from "@/components/dashboard/landing-view";
 import { ConnectedDashboard } from "@/components/dashboard/connected-dashboard";
@@ -11,7 +12,8 @@ import {
   type CountdownUnit,
   type VoteOptionKey,
 } from "@/lib/dashboard/mock-data";
-import { isTokenLive, truncateAddress } from "@/lib/web3/env";
+import { isTokenLive, truncateAddress, adinaTokenAddress } from "@/lib/web3/env";
+import { ERC20_ABI } from "@/lib/web3/erc20";
 
 export function TokenDashboard() {
   const { open } = useAppKit();
@@ -23,6 +25,44 @@ export function TokenDashboard() {
   const [countdown, setCountdown] = useState<CountdownUnit[]>(() =>
     computeCountdown(),
   );
+
+  const tokenAddress = adinaTokenAddress as Address | undefined;
+
+  const { data: rawBalance } = useReadContract({
+    address: tokenAddress,
+    abi: ERC20_ABI,
+    functionName: "balanceOf",
+    args: address ? [address] : undefined,
+    query: {
+      enabled: Boolean(tokenAddress && address && isConnected),
+    },
+  });
+
+  const { data: tokenSymbol } = useReadContract({
+    address: tokenAddress,
+    abi: ERC20_ABI,
+    functionName: "symbol",
+    query: {
+      enabled: Boolean(tokenAddress),
+    },
+  });
+
+  const { data: tokenDecimals } = useReadContract({
+    address: tokenAddress,
+    abi: ERC20_ABI,
+    functionName: "decimals",
+    query: {
+      enabled: Boolean(tokenAddress),
+    },
+  });
+
+  const liveBalanceLabel = useMemo(() => {
+    if (rawBalance === undefined || tokenDecimals === undefined) return null;
+    const formatted = formatUnits(rawBalance, tokenDecimals);
+    const num = Number(formatted);
+    if (!Number.isFinite(num)) return formatted;
+    return num.toLocaleString(undefined, { maximumFractionDigits: 4 });
+  }, [rawBalance, tokenDecimals]);
 
   useEffect(() => {
     const tick = setInterval(() => setCountdown(computeCountdown()), 1000);
@@ -57,6 +97,7 @@ export function TokenDashboard() {
   }, []);
 
   const displayAddress = address ? truncateAddress(address) : "";
+  const balanceIsLive = Boolean(tokenAddress && liveBalanceLabel !== null);
 
   return (
     <div className="dashboard-root">
@@ -98,6 +139,10 @@ export function TokenDashboard() {
           onCastVote={() => {
             if (selected && !voted) setVoted(true);
           }}
+          tokenBalanceLabel={liveBalanceLabel ?? "235"}
+          tokenSymbol={tokenSymbol ?? "ADINA"}
+          balanceIsLive={balanceIsLive}
+          portfolioValueLabel={balanceIsLive ? "TBA" : "$39.95"}
         />
       )}
     </div>
