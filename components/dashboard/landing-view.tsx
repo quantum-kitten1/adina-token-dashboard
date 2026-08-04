@@ -77,9 +77,10 @@ export function LandingView({ countdown, onOpenModal }: LandingViewProps) {
             }}
           >
             ADINA Token ($ADINA) powers five enterprise platforms under one
-            deflationary model — employment, gigs, carbon credits,
-            nutraceuticals, and performance racing — with governance and staking
-            built in. Genesis Public IDO via Uniswap CCA in Q4 2026.
+            deflationary model starting with a Decentralised Job Marketplace,
+            Gig Economy, Carbon Credits, Nutraceuticals and Performance Racing -
+            with governance and staking built in. Genesis Public IDO via Uniswap
+            CCA in Q4 2026.
           </p>
           <div
             style={{
@@ -122,7 +123,7 @@ export function LandingView({ countdown, onOpenModal }: LandingViewProps) {
                 border: "1px solid rgba(255,255,255,.12)",
               }}
             >
-              Read the whitepaper
+              Read the litepaper
             </a>
           </div>
           <div
@@ -380,74 +381,7 @@ export function LandingView({ countdown, onOpenModal }: LandingViewProps) {
         </div>
       </div>
 
-      <div
-        style={{
-          maxWidth: 1240,
-          margin: "0 auto",
-          padding: "32px 48px 72px",
-        }}
-      >
-        <div
-          style={{
-            display: "flex",
-            alignItems: "center",
-            gap: 14,
-            flexWrap: "wrap",
-            justifyContent: "center",
-          }}
-        >
-          <span
-            style={{
-              fontSize: 11,
-              fontWeight: 700,
-              letterSpacing: ".08em",
-              textTransform: "uppercase",
-              color: "#7e7e95",
-            }}
-          >
-            Backed & supported by
-          </span>
-          {[
-            { color: "#8b5cf6", name: "PAX Alliance Capital" },
-            { color: "#5aa0ff", name: "Macquarie University" },
-          ].map((partner) => (
-            <div
-              key={partner.name}
-              style={{
-                display: "flex",
-                alignItems: "center",
-                gap: 10,
-                padding: "9px 18px",
-                borderRadius: 12,
-                background: "rgba(255,255,255,.04)",
-                border: "1px solid rgba(255,255,255,.1)",
-              }}
-            >
-              <span
-                style={{
-                  width: 8,
-                  height: 8,
-                  borderRadius: 2,
-                  background: partner.color,
-                }}
-              />
-              <span style={{ fontSize: 15, fontWeight: 700, color: "#f3f3f8" }}>
-                {partner.name}
-              </span>
-            </div>
-          ))}
-          <span
-            style={{
-              fontSize: 12,
-              fontWeight: 500,
-              color: "#7e7e95",
-              padding: "9px 6px",
-            }}
-          >
-            Partnerships growing
-          </span>
-        </div>
-      </div>
+      <div style={{ height: 72 }} />
     </div>
   );
 }

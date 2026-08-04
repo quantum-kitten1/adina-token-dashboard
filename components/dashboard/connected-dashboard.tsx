@@ -452,7 +452,7 @@ export function ConnectedDashboard({
               >
                 {balanceIsLive
                   ? "On-chain balance (Base)"
-                  : "Preview balance — token not live yet"}
+                  : "Preview balance - token not live yet"}
               </div>
             </div>
             <div
@@ -2031,7 +2031,7 @@ function DashboardFooter() {
                 Documentation
               </a>
               <a style={{ fontSize: 14, fontWeight: 500 }} href="#">
-                Whitepaper
+                Litepaper
               </a>
             </div>
           </div>

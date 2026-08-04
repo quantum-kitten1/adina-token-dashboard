@@ -114,7 +114,7 @@ export function TokenDashboard() {
             borderBottom: "1px solid rgba(139,92,246,.28)",
           }}
         >
-          Pre-market on Base — ADINA is not live yet. Connect your wallet to
+          Pre-market on Base - ADINA is not live yet. Connect your wallet to
           explore the dashboard.
         </div>
       )}
