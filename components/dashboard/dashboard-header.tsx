@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import { useCallback, useState } from "react";
 
 type DashboardHeaderProps = {
   connected: boolean;
@@ -27,6 +28,29 @@ export function DashboardHeader({
   onDisconnect,
   onNavigate,
 }: DashboardHeaderProps) {
+  const [menuOpen, setMenuOpen] = useState(false);
+
+  const handleNavigate = useCallback(
+    (id: string) => {
+      setMenuOpen(false);
+      onNavigate(id);
+    },
+    [onNavigate],
+  );
+
+  const handleNavClick = (
+    e: React.MouseEvent<HTMLAnchorElement>,
+    item: (typeof NAV_ITEMS)[number],
+  ) => {
+    const external = "href" in item && item.href;
+    if (external) {
+      setMenuOpen(false);
+      return;
+    }
+    e.preventDefault();
+    handleNavigate(item.id);
+  };
+
   return (
     <header
       style={{
@@ -39,18 +63,8 @@ export function DashboardHeader({
         borderBottom: "1px solid rgba(255,255,255,.08)",
       }}
     >
-      <div
-        style={{
-          maxWidth: 1240,
-          margin: "0 auto",
-          padding: "15px 48px",
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "space-between",
-          gap: 24,
-        }}
-      >
-        <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
+      <div className="dashboard-header-inner">
+        <div style={{ display: "flex", alignItems: "center", gap: 12, minWidth: 0 }}>
           <Image
             src="/dashboard/logo.png"
             alt="Adina Labs"
@@ -59,6 +73,7 @@ export function DashboardHeader({
             style={{
               width: 38,
               height: 38,
+              flexShrink: 0,
               objectFit: "contain",
               filter: "drop-shadow(0 0 14px rgba(90,160,255,.45))",
             }}
@@ -68,6 +83,7 @@ export function DashboardHeader({
               display: "flex",
               flexDirection: "column",
               lineHeight: 1.05,
+              minWidth: 0,
             }}
           >
             <span
@@ -92,7 +108,7 @@ export function DashboardHeader({
           </div>
         </div>
 
-        <nav style={{ display: "flex", alignItems: "center", gap: 28 }}>
+        <nav className="dashboard-header-nav" aria-label="Main">
           {NAV_ITEMS.map((item) => {
             const external = "href" in item && item.href;
             return (
@@ -102,16 +118,15 @@ export function DashboardHeader({
                 {...(external
                   ? { target: "_blank", rel: "noopener noreferrer" }
                   : {
-                      onClick: (e: React.MouseEvent<HTMLAnchorElement>) => {
-                        e.preventDefault();
-                        onNavigate(item.id);
-                      },
+                      onClick: (e: React.MouseEvent<HTMLAnchorElement>) =>
+                        handleNavClick(e, item),
                     })}
                 style={{
                   fontSize: 14,
                   fontWeight: item.weight,
                   color: "#c9c9d6",
                   cursor: "pointer",
+                  whiteSpace: "nowrap",
                 }}
               >
                 {item.label}
@@ -120,80 +135,81 @@ export function DashboardHeader({
           })}
         </nav>
 
-        {connected ? (
-          <div
-            role="button"
-            tabIndex={0}
-            onClick={onDisconnect}
-            onKeyDown={(e) => {
-              if (e.key === "Enter" || e.key === " ") onDisconnect();
-            }}
-            style={{
-              display: "flex",
-              alignItems: "center",
-              gap: 10,
-              padding: "7px 8px 7px 14px",
-              borderRadius: 999,
-              background: "rgba(52,211,153,.1)",
-              border: "1px solid rgba(52,211,153,.28)",
-              cursor: "pointer",
-            }}
-          >
-            <span
-              className="dashboard-pulse-dot"
-              style={{
-                width: 8,
-                height: 8,
-                borderRadius: 999,
-                background: "#34d399",
-                boxShadow: "0 0 8px #34d399",
-              }}
-            />
-            <span
-              style={{ fontSize: 13, fontWeight: 600, color: "#a6a6b8" }}
-            >
-              Connected
-            </span>
-            <span
-              style={{
-                fontFamily: "ui-monospace, Menlo, monospace",
-                fontSize: 13,
-                fontWeight: 600,
-                color: "#f3f3f8",
-                padding: "5px 11px",
-                borderRadius: 999,
-                background: "rgba(255,255,255,.06)",
-                border: "1px solid rgba(255,255,255,.1)",
-              }}
-            >
-              {address}
-            </span>
-          </div>
-        ) : (
+        <div className="dashboard-header-actions">
           <button
             type="button"
-            onClick={onOpenModal}
-            style={{
-              fontFamily: "inherit",
-              display: "flex",
-              alignItems: "center",
-              gap: 8,
-              padding: "10px 20px",
-              borderRadius: 999,
-              border: "none",
-              cursor: "pointer",
-              fontSize: 14,
-              fontWeight: 700,
-              letterSpacing: "-0.01em",
-              color: "#fff",
-              background: "linear-gradient(135deg,#8b5cf6,#7c4ff0)",
-              boxShadow: "0 0 22px rgba(139,92,246,.4)",
-            }}
+            className="dashboard-header-menu-btn"
+            aria-expanded={menuOpen}
+            aria-label={menuOpen ? "Close menu" : "Open menu"}
+            onClick={() => setMenuOpen((open) => !open)}
           >
-            Connect Wallet
+            {menuOpen ? "✕" : "☰"}
           </button>
-        )}
+
+          {connected ? (
+            <div
+              role="button"
+              tabIndex={0}
+              className="dashboard-wallet-pill"
+              onClick={onDisconnect}
+              onKeyDown={(e) => {
+                if (e.key === "Enter" || e.key === " ") onDisconnect();
+              }}
+            >
+              <span
+                className="dashboard-pulse-dot"
+                style={{
+                  flexShrink: 0,
+                  width: 8,
+                  height: 8,
+                  borderRadius: 999,
+                  background: "#34d399",
+                  boxShadow: "0 0 8px #34d399",
+                }}
+              />
+              <span
+                className="dashboard-wallet-status-label"
+                style={{ fontSize: 13, fontWeight: 600, color: "#a6a6b8" }}
+              >
+                Connected
+              </span>
+              <span className="dashboard-wallet-address">{address}</span>
+            </div>
+          ) : (
+            <button
+              type="button"
+              className="dashboard-connect-btn"
+              onClick={onOpenModal}
+            >
+              <span className="dashboard-connect-label-long">Connect Wallet</span>
+              <span>Connect</span>
+            </button>
+          )}
+        </div>
       </div>
+
+      <nav
+        className={`dashboard-header-mobile-nav${menuOpen ? " is-open" : ""}`}
+        aria-label="Mobile"
+      >
+        {NAV_ITEMS.map((item) => {
+          const external = "href" in item && item.href;
+          return (
+            <a
+              key={item.id}
+              href={external ? item.href : `#${item.id}`}
+              {...(external
+                ? { target: "_blank", rel: "noopener noreferrer" }
+                : {
+                    onClick: (e: React.MouseEvent<HTMLAnchorElement>) =>
+                      handleNavClick(e, item),
+                  })}
+            >
+              {item.label}
+            </a>
+          );
+        })}
+      </nav>
     </header>
   );
 }

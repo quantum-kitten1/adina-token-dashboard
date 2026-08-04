@@ -136,16 +136,7 @@ export function ConnectedDashboard({
       : "Cast your first vote.";
 
   return (
-    <main
-      style={{
-        maxWidth: 1240,
-        margin: "0 auto",
-        padding: "28px 48px 64px",
-        display: "flex",
-        flexDirection: "column",
-        gap: 22,
-      }}
-    >
+    <main className="dashboard-main">
       <section
         id="overview"
         className="dashboard-fade-up"
@@ -225,13 +216,7 @@ export function ConnectedDashboard({
             </span>
           </div>
         </div>
-        <div
-          style={{
-            display: "grid",
-            gridTemplateColumns: "repeat(4, 1fr)",
-            gap: 12,
-          }}
-        >
+        <div className="dashboard-grid-4">
           {ONBOARDING_STEPS.map((step) => (
             <div
               key={step.title}
@@ -400,14 +385,7 @@ export function ConnectedDashboard({
               Read-only
             </span>
           </div>
-          <div
-            style={{
-              display: "flex",
-              alignItems: "flex-end",
-              gap: 32,
-              flexWrap: "wrap",
-            }}
-          >
+          <div className="dashboard-balance-row">
             <div>
               <div
                 style={{
@@ -426,14 +404,7 @@ export function ConnectedDashboard({
                   gap: 10,
                 }}
               >
-                <span
-                  style={{
-                    fontSize: 52,
-                    fontWeight: 800,
-                    letterSpacing: "-0.02em",
-                    lineHeight: 0.9,
-                  }}
-                >
+                <span className="dashboard-balance-value">
                   {tokenBalanceLabel}
                 </span>
                 <span
@@ -455,14 +426,7 @@ export function ConnectedDashboard({
                   : "Preview balance - token not live yet"}
               </div>
             </div>
-            <div
-              style={{
-                width: 1,
-                alignSelf: "stretch",
-                background: "rgba(255,255,255,.1)",
-                marginBottom: 4,
-              }}
-            />
+            <div className="dashboard-balance-divider" />
             <div style={{ marginBottom: 4 }}>
               <div
                 style={{
@@ -478,14 +442,7 @@ export function ConnectedDashboard({
                 {portfolioValueLabel}
               </div>
             </div>
-            <div
-              style={{
-                width: 1,
-                alignSelf: "stretch",
-                background: "rgba(255,255,255,.1)",
-                marginBottom: 4,
-              }}
-            />
+            <div className="dashboard-balance-divider" />
             <div style={{ marginBottom: 4 }}>
               <div
                 style={{
@@ -511,12 +468,8 @@ export function ConnectedDashboard({
       </section>
 
       <section
-        className="dashboard-fade-up"
+        className="dashboard-fade-up dashboard-grid-asym"
         style={{
-          display: "grid",
-          gridTemplateColumns: "1.5fr 1fr",
-          gap: 22,
-          alignItems: "start",
           animationDelay: "0.08s",
         }}
       >
@@ -560,7 +513,7 @@ export function ConnectedDashboard({
               hard cap
             </span>
           </div>
-          <div style={{ display: "flex", alignItems: "center", gap: 26 }}>
+          <div className="dashboard-supply-row">
             <div
               style={{
                 flex: "none",
@@ -708,17 +661,7 @@ export function ConnectedDashboard({
           >
             Token Metrics
           </div>
-          <div
-            style={{
-              display: "grid",
-              gridTemplateColumns: "1fr 1fr",
-              gap: 1,
-              background: "rgba(255,255,255,.08)",
-              border: "1px solid rgba(255,255,255,.08)",
-              borderRadius: 12,
-              overflow: "hidden",
-            }}
-          >
+          <div className="dashboard-grid-2-metrics">
             {[
               { label: "ISSUE PRICE FLOOR", value: "$0.17" },
               {
@@ -803,13 +746,7 @@ export function ConnectedDashboard({
             Canonical Contract Verification
           </h2>
         </div>
-        <div
-          style={{
-            display: "grid",
-            gridTemplateColumns: "1fr 1fr",
-            gap: 16,
-          }}
-        >
+        <div className="dashboard-grid-2">
           <div
             style={{
               padding: "16px 18px",
@@ -1388,6 +1325,7 @@ function RoadmapSection() {
 
       <div style={{ position: "relative" }}>
         <div
+          className="dashboard-roadmap-line"
           style={{
             position: "absolute",
             top: 11,
@@ -1398,14 +1336,7 @@ function RoadmapSection() {
               "linear-gradient(90deg,#34d399 0%,#34d399 12%,#8b5cf6 12%,#8b5cf6 38%,rgba(255,255,255,.12) 38%,rgba(255,255,255,.12) 100%)",
           }}
         />
-        <div
-          style={{
-            display: "grid",
-            gridTemplateColumns: "repeat(4, 1fr)",
-            gap: 20,
-            position: "relative",
-          }}
-        >
+        <div className="dashboard-roadmap-grid">
           <RoadmapPhase
             phase="PHASE 1"
             phaseColor="#34d399"
@@ -1736,10 +1667,9 @@ function EcosystemSection({ groups }: { groups: EcosystemGroups }) {
               {group.title}
             </h3>
             <div
+              className="dashboard-grid-ecosystem"
               style={{
-                display: "grid",
                 gridTemplateColumns: `repeat(${Math.min(group.items.length, 3)}, 1fr)`,
-                gap: 14,
               }}
             >
               {group.items.map((item) => {
@@ -1870,18 +1800,10 @@ function TransactionHistorySection() {
           Transaction History
         </h2>
       </div>
-      <div
-        style={{
-          border: "1px solid rgba(255,255,255,.08)",
-          borderRadius: 14,
-          overflow: "hidden",
-        }}
-      >
+      <div className="dashboard-tx-scroll">
         <div
+          className="dashboard-tx-row"
           style={{
-            display: "grid",
-            gridTemplateColumns: "1.4fr 1fr 1fr 1fr",
-            gap: 12,
             padding: "11px 18px",
             background: "rgba(255,255,255,.03)",
             borderBottom: "1px solid rgba(255,255,255,.08)",
@@ -1900,10 +1822,8 @@ function TransactionHistorySection() {
         {TRANSACTIONS.map((tx) => (
           <div
             key={tx.hash}
+            className="dashboard-tx-row"
             style={{
-              display: "grid",
-              gridTemplateColumns: "1.4fr 1fr 1fr 1fr",
-              gap: 12,
               padding: "14px 18px",
               borderBottom: "1px solid rgba(255,255,255,.05)",
               alignItems: "center",

@@ -11,17 +11,7 @@ type LandingViewProps = {
 export function LandingView({ countdown, onOpenModal }: LandingViewProps) {
   return (
     <div className="dashboard-fade-up">
-      <div
-        style={{
-          maxWidth: 1240,
-          margin: "0 auto",
-          padding: "60px 48px 40px",
-          display: "grid",
-          gridTemplateColumns: "1.1fr .9fr",
-          gap: 56,
-          alignItems: "center",
-        }}
-      >
+      <div className="dashboard-hero-grid">
         <div>
           <div
             style={{
@@ -56,15 +46,7 @@ export function LandingView({ countdown, onOpenModal }: LandingViewProps) {
               GENESIS IDO · Q4 2026
             </span>
           </div>
-          <h1
-            style={{
-              margin: "0 0 20px",
-              fontSize: 56,
-              fontWeight: 800,
-              letterSpacing: "-0.03em",
-              lineHeight: 1.04,
-            }}
-          >
+          <h1 className="dashboard-hero-title">
             The utility token powering the Adina Labs ecosystem.
           </h1>
           <p
@@ -150,42 +132,21 @@ export function LandingView({ countdown, onOpenModal }: LandingViewProps) {
             )}
           </div>
         </div>
-        <div
-          style={{
-            position: "relative",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-          }}
-        >
-          <div
-            style={{
-              position: "absolute",
-              width: 340,
-              height: 340,
-              background:
-                "radial-gradient(circle,rgba(139,92,246,.35),transparent 66%)",
-              pointerEvents: "none",
-            }}
-          />
+        <div className="dashboard-hero-token-wrap">
+          <div className="dashboard-hero-token-glow" />
           <Image
             src="/dashboard/adina-token.png"
             alt="ADINA token"
             width={300}
             height={300}
-            style={{
-              position: "relative",
-              width: 300,
-              height: 300,
-              objectFit: "contain",
-              filter: "drop-shadow(0 20px 50px rgba(90,160,255,.4))",
-            }}
+            className="dashboard-hero-token-img"
           />
         </div>
       </div>
 
-      <div style={{ maxWidth: 1240, margin: "0 auto", padding: "0 48px" }}>
+      <div className="dashboard-container" style={{ paddingBottom: 0 }}>
         <div
+          className="dashboard-ido-card"
           style={{
             position: "relative",
             overflow: "hidden",
@@ -231,7 +192,7 @@ export function LandingView({ countdown, onOpenModal }: LandingViewProps) {
                 Uniswap CCA · Q4 2026
               </span>
             </div>
-            <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
+            <div className="dashboard-countdown-row">
               <span
                 style={{
                   fontSize: 12,
@@ -327,18 +288,7 @@ export function LandingView({ countdown, onOpenModal }: LandingViewProps) {
               }}
             />
           </div>
-          <div
-            style={{
-              display: "grid",
-              gridTemplateColumns: "repeat(4, 1fr)",
-              gap: 1,
-              marginTop: 22,
-              background: "rgba(255,255,255,.08)",
-              border: "1px solid rgba(255,255,255,.08)",
-              borderRadius: 12,
-              overflow: "hidden",
-            }}
-          >
+          <div className="dashboard-grid-4-metrics">
             {[
               { label: "ISSUE PRICE FLOOR", value: "$0.17" },
               { label: "RAISE TARGET", value: "$15,000,000" },
@@ -382,11 +332,8 @@ export function LandingView({ countdown, onOpenModal }: LandingViewProps) {
       </div>
 
       <footer
-        style={{
-          maxWidth: 1240,
-          margin: "0 auto",
-          padding: "32px 48px 56px",
-        }}
+        className="dashboard-container"
+        style={{ paddingTop: 32, paddingBottom: 56 }}
       >
         <div
           style={{
