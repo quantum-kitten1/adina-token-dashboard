@@ -31,11 +31,9 @@
 
 @keyframes dashboard-fadeUp {
   from {
-    opacity: 0;
-    transform: translateY(14px);
+    transform: translateY(10px);
   }
   to {
-    opacity: 1;
     transform: translateY(0);
   }
 }
@@ -57,7 +55,7 @@
 }
 
 .dashboard-fade-up {
-  animation: dashboard-fadeUp 0.5s ease forwards;
+  animation: dashboard-fadeUp 0.45s ease both;
 }
 
 .dashboard-pulse-dot {
