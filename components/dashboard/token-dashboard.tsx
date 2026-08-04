@@ -1,87 +1,50 @@
 "use client";
 
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
+import { useAppKit } from "@reown/appkit/react";
+import { useAccount, useDisconnect } from "wagmi";
 import { DashboardHeader } from "@/components/dashboard/dashboard-header";
 import { LandingView } from "@/components/dashboard/landing-view";
 import { ConnectedDashboard } from "@/components/dashboard/connected-dashboard";
-import { WalletConnectModal } from "@/components/dashboard/wallet-connect-modal";
 import {
   computeCountdown,
   type CountdownUnit,
   type VoteOptionKey,
 } from "@/lib/dashboard/mock-data";
-
-type ConnectStep = "approve" | "sign" | null;
+import { isTokenLive, truncateAddress } from "@/lib/web3/env";
 
 export function TokenDashboard() {
+  const { open } = useAppKit();
+  const { address, isConnected } = useAccount();
+  const { disconnect } = useDisconnect();
+
   const [selected, setSelected] = useState<VoteOptionKey | null>(null);
   const [voted, setVoted] = useState(false);
-  const [connected, setConnected] = useState(false);
-  const [modalOpen, setModalOpen] = useState(false);
-  const [connecting, setConnecting] = useState<string | null>(null);
-  const [step, setStep] = useState<ConnectStep>(null);
   const [countdown, setCountdown] = useState<CountdownUnit[]>(() =>
     computeCountdown(),
   );
 
-  const connectTimer1 = useRef<ReturnType<typeof setTimeout> | null>(null);
-  const connectTimer2 = useRef<ReturnType<typeof setTimeout> | null>(null);
-
-  const clearConnectTimers = useCallback(() => {
-    if (connectTimer1.current) {
-      clearTimeout(connectTimer1.current);
-      connectTimer1.current = null;
-    }
-    if (connectTimer2.current) {
-      clearTimeout(connectTimer2.current);
-      connectTimer2.current = null;
-    }
+  useEffect(() => {
+    const tick = setInterval(() => setCountdown(computeCountdown()), 1000);
+    return () => clearInterval(tick);
   }, []);
 
   useEffect(() => {
-    const tick = setInterval(() => setCountdown(computeCountdown()), 1000);
-    return () => {
-      clearInterval(tick);
-      clearConnectTimers();
-    };
-  }, [clearConnectTimers]);
+    if (!isConnected) {
+      setSelected(null);
+      setVoted(false);
+    }
+  }, [isConnected]);
 
-  const cancelConnect = useCallback(() => {
-    clearConnectTimers();
-    setConnecting(null);
-    setStep(null);
-  }, [clearConnectTimers]);
+  const openConnect = useCallback(() => {
+    void open({ view: "Connect" });
+  }, [open]);
 
-  const beginConnect = useCallback(
-    (name: string) => {
-      if (connecting) return;
-      setConnecting(name);
-      setStep("approve");
-      setModalOpen(true);
-
-      connectTimer1.current = setTimeout(() => {
-        setStep("sign");
-        connectTimer2.current = setTimeout(() => {
-          setConnected(true);
-          setModalOpen(false);
-          setConnecting(null);
-          setStep(null);
-        }, 1500);
-      }, 1400);
-    },
-    [connecting],
-  );
-
-  const closeModal = useCallback(() => {
-    cancelConnect();
-    setModalOpen(false);
-  }, [cancelConnect]);
-
-  const disconnect = useCallback(() => {
-    setConnected(false);
+  const handleDisconnect = useCallback(() => {
+    disconnect();
     setSelected(null);
     setVoted(false);
-  }, []);
+  }, [disconnect]);
 
   const navigateTo = useCallback((id: string) => {
     const el = document.getElementById(id);
@@ -93,23 +56,41 @@ export function TokenDashboard() {
     }
   }, []);
 
+  const displayAddress = address ? truncateAddress(address) : "";
+
   return (
     <div className="dashboard-root">
+      {!isTokenLive && (
+        <div
+          role="status"
+          style={{
+            textAlign: "center",
+            padding: "8px 16px",
+            fontSize: 13,
+            fontWeight: 600,
+            color: "#c9b8ff",
+            background: "rgba(139,92,246,.14)",
+            borderBottom: "1px solid rgba(139,92,246,.28)",
+          }}
+        >
+          Pre-market on Base — ADINA is not live yet. Connect your wallet to
+          explore the dashboard.
+        </div>
+      )}
+
       <DashboardHeader
-        connected={connected}
-        onOpenModal={() => setModalOpen(true)}
-        onDisconnect={disconnect}
+        connected={isConnected}
+        address={displayAddress}
+        onOpenModal={openConnect}
+        onDisconnect={handleDisconnect}
         onNavigate={navigateTo}
       />
 
-      {!connected && (
-        <LandingView
-          countdown={countdown}
-          onOpenModal={() => setModalOpen(true)}
-        />
+      {!isConnected && (
+        <LandingView countdown={countdown} onOpenModal={openConnect} />
       )}
 
-      {connected && (
+      {isConnected && (
         <ConnectedDashboard
           selected={selected}
           voted={voted}
@@ -119,15 +100,6 @@ export function TokenDashboard() {
           }}
         />
       )}
-
-      <WalletConnectModal
-        open={modalOpen}
-        connecting={connecting}
-        step={step}
-        onClose={closeModal}
-        onConnect={beginConnect}
-        onCancelConnect={cancelConnect}
-      />
     </div>
   );
 }

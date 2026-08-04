@@ -1,5 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import { Inter } from "next/font/google";
+import { headers } from "next/headers";
+import { Web3Provider } from "@/components/providers/web3-provider";
 import "./globals.css";
 import "./dashboard.css";
 
@@ -21,14 +23,19 @@ export const viewport: Viewport = {
   initialScale: 1,
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const headersList = await headers();
+  const cookies = headersList.get("cookie");
+
   return (
     <html lang="en" className={`${inter.variable} h-full`}>
-      <body className="min-h-full bg-[#0a0a12]">{children}</body>
+      <body className="min-h-full bg-[#0a0a12]">
+        <Web3Provider cookies={cookies}>{children}</Web3Provider>
+      </body>
     </html>
   );
 }

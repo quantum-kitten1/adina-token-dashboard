@@ -1,13 +1,10 @@
 "use client";
 
 import Image from "next/image";
-import {
-  MOCK_WALLET_ADDRESS,
-  WALLET_DEFS,
-} from "@/lib/dashboard/mock-data";
 
 type DashboardHeaderProps = {
   connected: boolean;
+  address: string;
   onOpenModal: () => void;
   onDisconnect: () => void;
   onNavigate: (id: string) => void;
@@ -23,6 +20,7 @@ const NAV_ITEMS = [
 
 export function DashboardHeader({
   connected,
+  address,
   onOpenModal,
   onDisconnect,
   onNavigate,
@@ -159,7 +157,7 @@ export function DashboardHeader({
                 border: "1px solid rgba(255,255,255,.1)",
               }}
             >
-              {MOCK_WALLET_ADDRESS}
+              {address}
             </span>
           </div>
         ) : (
