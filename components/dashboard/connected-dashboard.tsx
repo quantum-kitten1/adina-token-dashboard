@@ -630,11 +630,11 @@ export function ConnectedDashboard({
               <span style={{ color: "#34d399", fontWeight: 700 }}>
                 88,235,294
               </span>{" "}
-              circulating /{" "}
+              public IDO /{" "}
               <span style={{ color: "#f3f3f8", fontWeight: 700 }}>
                 1,000,000,000
               </span>{" "}
-              max
+              hard cap
             </span>
           </div>
           <div style={{ display: "flex", alignItems: "center", gap: 26 }}>
@@ -646,7 +646,7 @@ export function ConnectedDashboard({
                 height: 140,
                 borderRadius: 999,
                 background:
-                  "conic-gradient(#34d399 0 8.82%,#a78bfa 8.82% 10.12%,#8b5cf6 10.12% 55.12%,#5a4b8f 55.12% 70.12%,#3d3d52 70.12% 100%)",
+                  "conic-gradient(#34d399 0 8.82%,#a78bfa 8.82% 28.82%,#8b5cf6 28.82% 100%)",
               }}
             >
               <div
@@ -682,7 +682,7 @@ export function ConnectedDashboard({
                     marginTop: 2,
                   }}
                 >
-                  max supply
+                  hard cap
                 </span>
               </div>
             </div>
@@ -695,33 +695,40 @@ export function ConnectedDashboard({
               }}
             >
               {[
-                { color: "#34d399", label: "Public / IDO", pct: "8.82%" },
-                { color: "#a78bfa", label: "Liquidity", pct: "1.3%" },
                 {
-                  color: "#8b5cf6",
-                  label: "Ecosystem & Community",
-                  pct: "45%",
+                  color: "#34d399",
+                  label: "Genesis Public IDO",
+                  pct: "8.82%",
+                  key: "ido",
                 },
                 {
-                  color: "#5a4b8f",
-                  label: (
-                    <>
-                      Team & Advisors{" "}
-                      <span style={{ color: "#7e7e95", fontWeight: 500 }}>
-                        (vesting)
-                      </span>
-                    </>
-                  ),
-                  pct: "15%",
+                  color: "#a78bfa",
+                  label: "Subsequent IDO Capital Reserve",
+                  pct: "20%",
+                  key: "reserve",
+                },
+                {
+                  color: "#8b5cf6",
+                  label: "Ecosystem, Liquidity & Vaults",
+                  pct: "71.18%",
+                  key: "ecosystem",
                 },
                 {
                   color: "#3d3d52",
-                  label: "Treasury / Reserve",
-                  pct: "29.88%",
+                  label: (
+                    <>
+                      Founders, Team & Insiders{" "}
+                      <span style={{ color: "#7e7e95", fontWeight: 500 }}>
+                        (zero allocation)
+                      </span>
+                    </>
+                  ),
+                  pct: "0%",
+                  key: "founders",
                 },
               ].map((row) => (
                 <div
-                  key={typeof row.label === "string" ? row.label : "team"}
+                  key={row.key}
                   style={{ display: "flex", alignItems: "center", gap: 9 }}
                 >
                   <span
