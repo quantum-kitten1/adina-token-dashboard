@@ -10,12 +10,14 @@ type DashboardHeaderProps = {
   onNavigate: (id: string) => void;
 };
 
+const DOCS_URL = "https://adinalabs-website-july-2026.vercel.app/docs";
+
 const NAV_ITEMS = [
   { id: "overview", label: "Overview", weight: 600 },
   { id: "governance", label: "Governance", weight: 500 },
   { id: "roadmap", label: "Roadmap", weight: 500 },
   { id: "ecosystem", label: "Ecosystem", weight: 500 },
-  { id: "docs", label: "Docs", weight: 500 },
+  { id: "docs", label: "Docs", weight: 500, href: DOCS_URL },
 ] as const;
 
 export function DashboardHeader({
@@ -91,24 +93,31 @@ export function DashboardHeader({
         </div>
 
         <nav style={{ display: "flex", alignItems: "center", gap: 28 }}>
-          {NAV_ITEMS.map((item) => (
-            <a
-              key={item.id}
-              href={`#${item.id}`}
-              onClick={(e) => {
-                e.preventDefault();
-                onNavigate(item.id);
-              }}
-              style={{
-                fontSize: 14,
-                fontWeight: item.weight,
-                color: "#c9c9d6",
-                cursor: "pointer",
-              }}
-            >
-              {item.label}
-            </a>
-          ))}
+          {NAV_ITEMS.map((item) => {
+            const external = "href" in item && item.href;
+            return (
+              <a
+                key={item.id}
+                href={external ? item.href : `#${item.id}`}
+                {...(external
+                  ? { target: "_blank", rel: "noopener noreferrer" }
+                  : {
+                      onClick: (e: React.MouseEvent<HTMLAnchorElement>) => {
+                        e.preventDefault();
+                        onNavigate(item.id);
+                      },
+                    })}
+                style={{
+                  fontSize: 14,
+                  fontWeight: item.weight,
+                  color: "#c9c9d6",
+                  cursor: "pointer",
+                }}
+              >
+                {item.label}
+              </a>
+            );
+          })}
         </nav>
 
         {connected ? (

@@ -2027,7 +2027,12 @@ function DashboardFooter() {
             <div
               style={{ display: "flex", flexDirection: "column", gap: 9 }}
             >
-              <a style={{ fontSize: 14, fontWeight: 500 }} href="#">
+              <a
+                style={{ fontSize: 14, fontWeight: 500 }}
+                href="https://adinalabs-website-july-2026.vercel.app/docs"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 Documentation
               </a>
               <a style={{ fontSize: 14, fontWeight: 500 }} href="#">
