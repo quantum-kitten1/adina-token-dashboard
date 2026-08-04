@@ -50,149 +50,72 @@ const ONBOARDING_STEPS = [
   },
 ];
 
-const ECOSYSTEM_CARDS = [
+const ECOSYSTEM_GROUPS = [
   {
-    title: "Token Dashboard",
-    desc: "Your ADINA, governance, and ecosystem hub.",
-    badge: "You are here",
-    badgeColor: "#c9b8ff",
-    badgeBg: "rgba(139,92,246,.2)",
-    badgeBorder: "rgba(139,92,246,.45)",
-    cardBg:
-      "linear-gradient(155deg,rgba(139,92,246,.14),rgba(255,255,255,.04))",
-    cardBorder: "rgba(139,92,246,.3)",
-    iconStroke: "#c9b8ff",
-    icon: (
-      <>
-        <rect x="2" y="2" width="7.5" height="7.5" rx="2" stroke="#c9b8ff" strokeWidth="1.7" />
-        <rect x="12.5" y="2" width="7.5" height="7.5" rx="2" stroke="#c9b8ff" strokeWidth="1.7" />
-        <rect x="2" y="12.5" width="7.5" height="7.5" rx="2" stroke="#c9b8ff" strokeWidth="1.7" />
-        <rect x="12.5" y="12.5" width="7.5" height="7.5" rx="2" stroke="#c9b8ff" strokeWidth="1.7" />
-      </>
-    ),
-    iconBg: "rgba(139,92,246,.2)",
-    iconBorder: "rgba(139,92,246,.35)",
+    title: "Core Infrastructure",
+    items: [
+      {
+        title: "Smart Contract Hub",
+        desc: "Where the ecosystem's contracts are built, tested, and deployed.",
+        badge: "Live",
+        accent: true,
+      },
+      {
+        title: "Wallet Integration",
+        desc: "Connect MetaMask, Coinbase, WalletConnect, and more on Base.",
+        badge: "Live",
+        accent: true,
+      },
+      {
+        title: "Adina Token Dashboard",
+        desc: "Your ADINA, governance, and ecosystem hub.",
+        badge: "You are here",
+        accent: true,
+      },
+    ],
   },
   {
-    title: "Decentralized Employment Marketplace",
-    desc: "Web2 hiring sells your data and hides behind algorithms and AI. We keep hiring genuinely human-to-human and peer-to-peer, with trust built into the system rather than sold back to you.",
-    badge: "Next",
-    badgeColor: "#c9b8ff",
-    badgeBg: "rgba(139,92,246,.18)",
-    badgeBorder: "rgba(139,92,246,.4)",
-    cardBg: "rgba(255,255,255,.04)",
-    cardBorder: "rgba(139,92,246,.28)",
-    iconStroke: "#c9b8ff",
-    icon: (
-      <>
-        <rect x="2.5" y="6" width="17" height="12" rx="2.5" stroke="#c9b8ff" strokeWidth="1.7" />
-        <path d="M8 6V4.5A1.5 1.5 0 0 1 9.5 3h3A1.5 1.5 0 0 1 14 4.5V6" stroke="#c9b8ff" strokeWidth="1.7" />
-        <path d="M2.5 11h17" stroke="#c9b8ff" strokeWidth="1.7" />
-      </>
-    ),
-    iconBg: "rgba(139,92,246,.16)",
-    iconBorder: "rgba(139,92,246,.3)",
+    title: "Genesis DApps",
+    items: [
+      {
+        title: "Decentralised Job Platform",
+        desc: "Human-to-human hiring with trust built into the system.",
+        badge: "View product",
+        accent: true,
+        href: "https://adinalabs-website-july-2026.vercel.app/products/decentralized-job-platform",
+      },
+      {
+        title: "Gig Economy Platform",
+        desc: "On-demand freelance contracting, micro-task settlement, and automated escrow.",
+        badge: "Coming soon",
+        accent: false,
+      },
+    ],
   },
   {
-    title: "Gig Economy Platform",
-    desc: "Peer-to-peer short-term and project work. Clients post gigs, freelancers deliver, and payment settles automatically.",
-    badge: "Coming soon",
-    badgeColor: "#9a9aae",
-    badgeBg: "rgba(255,255,255,.05)",
-    badgeBorder: "rgba(255,255,255,.1)",
-    cardBg: "rgba(255,255,255,.04)",
-    cardBorder: "rgba(255,255,255,.1)",
-    icon: (
-      <path d="M12 2 4.5 12.5H10l-1 7.5L17.5 9H12l0-7Z" stroke="#9a9aae" strokeWidth="1.7" strokeLinejoin="round" />
-    ),
-    iconBg: "rgba(255,255,255,.05)",
-    iconBorder: "rgba(255,255,255,.1)",
+    title: "Expansions",
+    items: [
+      {
+        title: "Carbon Credit Trading Platform",
+        desc: "Verified carbon credits on-chain: transparent, traceable, and impossible to double-count.",
+        badge: "Planned",
+        accent: false,
+      },
+      {
+        title: "Nutraceuticals Retail Platform",
+        desc: "Supply-chain provenance, direct-to-consumer wellness retail, and loyalty rewards.",
+        badge: "Planned",
+        accent: false,
+      },
+      {
+        title: "Performance Racing Team Platform",
+        desc: "Fan engagement, telemetry monetization, and motorsports operations.",
+        badge: "Planned",
+        accent: false,
+      },
+    ],
   },
-  {
-    title: "Non-Custodial Wallet",
-    desc: "Self-custody your ADINA.",
-    badge: "Coming soon",
-    badgeColor: "#9a9aae",
-    badgeBg: "rgba(255,255,255,.05)",
-    badgeBorder: "rgba(255,255,255,.1)",
-    cardBg: "rgba(255,255,255,.04)",
-    cardBorder: "rgba(255,255,255,.1)",
-    icon: (
-      <>
-        <rect x="2.5" y="5" width="17" height="13" rx="2.5" stroke="#9a9aae" strokeWidth="1.7" />
-        <path d="M14.5 10.5h4v3h-4a1.5 1.5 0 0 1 0-3Z" stroke="#9a9aae" strokeWidth="1.7" />
-      </>
-    ),
-    iconBg: "rgba(255,255,255,.05)",
-    iconBorder: "rgba(255,255,255,.1)",
-  },
-  {
-    title: "Smart Contract Hub",
-    desc: "Where the ecosystem's contracts are built, tested, and deployed, fast, secure, and consistent.",
-    badge: "Coming soon",
-    badgeColor: "#9a9aae",
-    badgeBg: "rgba(255,255,255,.05)",
-    badgeBorder: "rgba(255,255,255,.1)",
-    cardBg: "rgba(255,255,255,.04)",
-    cardBorder: "rgba(255,255,255,.1)",
-    icon: (
-      <path d="M7.5 6.5 3 11l4.5 4.5M14.5 6.5 19 11l-4.5 4.5" stroke="#9a9aae" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round" />
-    ),
-    iconBg: "rgba(255,255,255,.05)",
-    iconBorder: "rgba(255,255,255,.1)",
-  },
-  {
-    title: "Carbon Credit Trading Platform",
-    desc: "Verified carbon credits on-chain: transparent, traceable, and impossible to double-count.",
-    badge: "Later",
-    badgeColor: "#9a9aae",
-    badgeBg: "rgba(255,255,255,.05)",
-    badgeBorder: "rgba(255,255,255,.1)",
-    cardBg: "rgba(255,255,255,.04)",
-    cardBorder: "rgba(255,255,255,.1)",
-    icon: (
-      <>
-        <path d="M5 17C5 9.5 11.5 4.5 18 4.5c.3 7.8-5 12.5-13 12.5Z" stroke="#9a9aae" strokeWidth="1.7" strokeLinejoin="round" />
-        <path d="M6 16c3-4 6.5-6.5 10-8" stroke="#9a9aae" strokeWidth="1.7" strokeLinecap="round" />
-      </>
-    ),
-    iconBg: "rgba(255,255,255,.05)",
-    iconBorder: "rgba(255,255,255,.1)",
-  },
-  {
-    title: "Nutraceuticals Retail Platform",
-    desc: "Health and wellness supplements with blockchain-verified origin and traceability, for longevity, immunity, and cognitive performance.",
-    badge: "Later",
-    badgeColor: "#9a9aae",
-    badgeBg: "rgba(255,255,255,.05)",
-    badgeBorder: "rgba(255,255,255,.1)",
-    cardBg: "rgba(255,255,255,.04)",
-    cardBorder: "rgba(255,255,255,.1)",
-    icon: (
-      <>
-        <rect x="3" y="8.5" width="16" height="5" rx="2.5" transform="rotate(-45 11 11)" stroke="#9a9aae" strokeWidth="1.7" />
-        <path d="M8.3 8.3 13.7 13.7" stroke="#9a9aae" strokeWidth="1.7" />
-      </>
-    ),
-    iconBg: "rgba(255,255,255,.05)",
-    iconBorder: "rgba(255,255,255,.1)",
-  },
-  {
-    title: "Performance Racing Team Platform",
-    desc: "Fan engagement and telemetry data monetization for the Adina Labs performance racing team — on-chain participation without extracting your identity.",
-    badge: "Later",
-    badgeColor: "#9a9aae",
-    badgeBg: "rgba(255,255,255,.05)",
-    badgeBorder: "rgba(255,255,255,.1)",
-    cardBg: "rgba(255,255,255,.04)",
-    cardBorder: "rgba(255,255,255,.1)",
-    icon: (
-      <path d="M4 16h3l2-4h6l2 4h3M8 12l1.5-5h5L16 12M9 19a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3Zm6 0a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3Z" stroke="#9a9aae" strokeWidth="1.7" strokeLinejoin="round" />
-    ),
-    iconBg: "rgba(255,255,255,.05)",
-    iconBorder: "rgba(255,255,255,.1)",
-  },
-];
+] as const;
 
 export function ConnectedDashboard({
   selected,
@@ -1380,7 +1303,7 @@ export function ConnectedDashboard({
       </section>
 
       <RoadmapSection />
-      <EcosystemSection cards={ECOSYSTEM_CARDS} />
+      <EcosystemSection groups={ECOSYSTEM_GROUPS} />
       <TransactionHistorySection />
       <DashboardFooter />
     </main>
@@ -1772,12 +1695,16 @@ function RoadmapPhase({
   );
 }
 
-type EcosystemCard = (typeof ECOSYSTEM_CARDS)[number];
+type EcosystemGroups = typeof ECOSYSTEM_GROUPS;
 
-function EcosystemSection({ cards }: { cards: EcosystemCard[] }) {
+function EcosystemSection({ groups }: { groups: EcosystemGroups }) {
   return (
-    <section id="ecosystem" className="dashboard-fade-up" style={{ animationDelay: "0.18s" }}>
-      <div style={{ marginBottom: 16 }}>
+    <section
+      id="ecosystem"
+      className="dashboard-fade-up"
+      style={{ animationDelay: "0.18s" }}
+    >
+      <div style={{ marginBottom: 20 }}>
         <h2
           style={{
             margin: "0 0 4px",
@@ -1789,80 +1716,129 @@ function EcosystemSection({ cards }: { cards: EcosystemCard[] }) {
           Ecosystem
         </h2>
         <p style={{ margin: 0, fontSize: 13, color: "#8a8a9c" }}>
-          Every Adina Labs platform, in one place.
+          Core infrastructure, Genesis dApps, and planned expansions.
         </p>
       </div>
-      <div
-        style={{
-          display: "grid",
-          gridTemplateColumns: "repeat(4, 1fr)",
-          gap: 16,
-        }}
-      >
-        {cards.map((card) => (
-          <div
-            key={card.title}
-            style={{
-              position: "relative",
-              padding: 20,
-              borderRadius: 16,
-              background: card.cardBg,
-              border: `1px solid ${card.cardBorder}`,
-            }}
-          >
-            <span
-              style={{
-                position: "absolute",
-                top: 16,
-                right: 16,
-                fontSize: 11,
-                fontWeight: 700,
-                color: card.badgeColor,
-                padding: "4px 10px",
-                borderRadius: 999,
-                background: card.badgeBg,
-                border: `1px solid ${card.badgeBorder}`,
-              }}
-            >
-              {card.badge}
-            </span>
-            <div
-              style={{
-                width: 44,
-                height: 44,
-                borderRadius: 13,
-                background: card.iconBg,
-                border: `1px solid ${card.iconBorder}`,
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-                marginBottom: 16,
-              }}
-            >
-              <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
-                {card.icon}
-              </svg>
-            </div>
+
+      <div style={{ display: "flex", flexDirection: "column", gap: 28 }}>
+        {groups.map((group) => (
+          <div key={group.title}>
             <h3
               style={{
-                margin: "0 0 6px",
-                fontSize: 16,
-                fontWeight: 700,
-                color: "#f3f3f8",
-              }}
-            >
-              {card.title}
-            </h3>
-            <p
-              style={{
-                margin: 0,
+                margin: "0 0 12px",
                 fontSize: 13,
-                lineHeight: 1.55,
-                color: "#a6a6b8",
+                fontWeight: 700,
+                letterSpacing: ".06em",
+                textTransform: "uppercase",
+                color: "#c9b8ff",
               }}
             >
-              {card.desc}
-            </p>
+              {group.title}
+            </h3>
+            <div
+              style={{
+                display: "grid",
+                gridTemplateColumns: `repeat(${Math.min(group.items.length, 3)}, 1fr)`,
+                gap: 14,
+              }}
+            >
+              {group.items.map((item) => {
+                const accent = item.accent;
+                const content = (
+                  <>
+                    <span
+                      style={{
+                        position: "absolute",
+                        top: 16,
+                        right: 16,
+                        fontSize: 11,
+                        fontWeight: 700,
+                        color: accent ? "#c9b8ff" : "#9a9aae",
+                        padding: "4px 10px",
+                        borderRadius: 999,
+                        background: accent
+                          ? "rgba(139,92,246,.18)"
+                          : "rgba(255,255,255,.05)",
+                        border: accent
+                          ? "1px solid rgba(139,92,246,.4)"
+                          : "1px solid rgba(255,255,255,.1)",
+                      }}
+                    >
+                      {item.badge}
+                    </span>
+                    <h4
+                      style={{
+                        margin: "0 0 8px",
+                        paddingRight: 96,
+                        fontSize: 16,
+                        fontWeight: 700,
+                        color: "#f3f3f8",
+                      }}
+                    >
+                      {item.title}
+                      {"href" in item && item.href ? (
+                        <span
+                          style={{
+                            marginLeft: 8,
+                            fontSize: 13,
+                            color: "#c9b8ff",
+                            fontWeight: 600,
+                          }}
+                        >
+                          →
+                        </span>
+                      ) : null}
+                    </h4>
+                    <p
+                      style={{
+                        margin: 0,
+                        fontSize: 13,
+                        lineHeight: 1.55,
+                        color: "#a6a6b8",
+                      }}
+                    >
+                      {item.desc}
+                    </p>
+                  </>
+                );
+
+                const style = {
+                  position: "relative" as const,
+                  display: "block",
+                  padding: 20,
+                  borderRadius: 16,
+                  background: accent
+                    ? "linear-gradient(155deg,rgba(139,92,246,.14),rgba(255,255,255,.04))"
+                    : "rgba(255,255,255,.04)",
+                  border: accent
+                    ? "1px solid rgba(139,92,246,.3)"
+                    : "1px solid rgba(255,255,255,.1)",
+                  textDecoration: "none",
+                  color: "inherit",
+                  cursor: "href" in item && item.href ? "pointer" : "default",
+                };
+
+                if ("href" in item && item.href) {
+                  return (
+                    <a
+                      key={item.title}
+                      href={item.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      style={style}
+                    >
+                      {content}
+                    </a>
+                  );
+                }
+
+                return (
+                  <div key={item.title} style={style}>
+                    {content}
+                  </div>
+                );
+              })}
+            </div>
           </div>
         ))}
       </div>
