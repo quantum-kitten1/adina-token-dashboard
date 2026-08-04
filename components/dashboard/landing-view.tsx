@@ -53,7 +53,7 @@ export function LandingView({ countdown, onOpenModal }: LandingViewProps) {
                 color: "#c9b8ff",
               }}
             >
-              IDO LIVE · Q4 2026
+              GENESIS IDO · Q4 2026
             </span>
           </div>
           <h1
@@ -65,7 +65,7 @@ export function LandingView({ countdown, onOpenModal }: LandingViewProps) {
               lineHeight: 1.04,
             }}
           >
-            The utility token powering a decentralized work economy.
+            The utility token powering the Adina Labs ecosystem.
           </h1>
           <p
             style={{
@@ -76,10 +76,10 @@ export function LandingView({ countdown, onOpenModal }: LandingViewProps) {
               maxWidth: 520,
             }}
           >
-            ADINA Token is the backbone of the Adina Labs ecosystem,
-            governance, staking, and a blockchain-based job platform built for
-            verified, permanent work. Join early adopters shaping what comes
-            next.
+            ADINA Token ($ADINA) powers five enterprise platforms under one
+            deflationary model — employment, gigs, carbon credits,
+            nutraceuticals, and performance racing — with governance and staking
+            built in. Genesis Public IDO via Uniswap CCA in Q4 2026.
           </p>
           <div
             style={{
@@ -214,7 +214,7 @@ export function LandingView({ countdown, onOpenModal }: LandingViewProps) {
                   letterSpacing: "-0.02em",
                 }}
               >
-                ADINA Token IDO
+                Genesis Public IDO
               </h2>
               <span
                 style={{
@@ -227,7 +227,7 @@ export function LandingView({ countdown, onOpenModal }: LandingViewProps) {
                   border: "1px solid rgba(255,255,255,.1)",
                 }}
               >
-                Illustrative preview
+                Uniswap CCA · Q4 2026
               </span>
             </div>
             <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
@@ -339,20 +339,20 @@ export function LandingView({ countdown, onOpenModal }: LandingViewProps) {
             }}
           >
             {[
-              { label: "LAUNCH PRICE", value: "$0.17" },
+              { label: "ISSUE PRICE FLOOR", value: "$0.17" },
               { label: "RAISE TARGET", value: "$15,000,000" },
               {
                 label: "IDO ALLOCATION",
                 value: (
                   <>
-                    88,000,000{" "}
+                    88,235,294{" "}
                     <span style={{ fontSize: 12, color: "#8a8a9c" }}>
                       ADINA
                     </span>
                   </>
                 ),
               },
-              { label: "LIQUIDITY POOL", value: "$2,250,000" },
+              { label: "INITIAL FDV", value: "$170,000,000" },
             ].map((item) => (
               <div
                 key={item.label}

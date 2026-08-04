@@ -70,7 +70,7 @@ const ECOSYSTEM_CARDS = [
     iconBorder: "rgba(139,92,246,.35)",
   },
   {
-    title: "Decentralized Job Platform",
+    title: "Decentralized Employment Marketplace",
     desc: "Web2 hiring sells your data and hides behind algorithms and AI. We keep hiring genuinely human-to-human and peer-to-peer, with trust built into the system rather than sold back to you.",
     badge: "Next",
     badgeColor: "#c9b8ff",
@@ -90,7 +90,7 @@ const ECOSYSTEM_CARDS = [
     iconBorder: "rgba(139,92,246,.3)",
   },
   {
-    title: "Freelance Hub",
+    title: "Gig Economy Platform",
     desc: "Peer-to-peer short-term and project work. Clients post gigs, freelancers deliver, and payment settles automatically.",
     badge: "Coming soon",
     badgeColor: "#9a9aae",
@@ -138,7 +138,7 @@ const ECOSYSTEM_CARDS = [
     iconBorder: "rgba(255,255,255,.1)",
   },
   {
-    title: "Carbon Credits Market",
+    title: "Carbon Credit Trading Platform",
     desc: "Verified carbon credits on-chain: transparent, traceable, and impossible to double-count.",
     badge: "Later",
     badgeColor: "#9a9aae",
@@ -156,7 +156,7 @@ const ECOSYSTEM_CARDS = [
     iconBorder: "rgba(255,255,255,.1)",
   },
   {
-    title: "Nutraceuticals Hub",
+    title: "Nutraceuticals Retail Platform",
     desc: "Health and wellness supplements with blockchain-verified origin and traceability, for longevity, immunity, and cognitive performance.",
     badge: "Later",
     badgeColor: "#9a9aae",
@@ -174,8 +174,8 @@ const ECOSYSTEM_CARDS = [
     iconBorder: "rgba(255,255,255,.1)",
   },
   {
-    title: "Adina Connect",
-    desc: "A decentralized dating platform built on privacy and authenticity: verified profiles, real people, no algorithm engineered to keep you scrolling.",
+    title: "Performance Racing Team Platform",
+    desc: "Fan engagement and telemetry data monetization for the Adina Labs performance racing team — on-chain participation without extracting your identity.",
     badge: "Later",
     badgeColor: "#9a9aae",
     badgeBg: "rgba(255,255,255,.05)",
@@ -183,7 +183,7 @@ const ECOSYSTEM_CARDS = [
     cardBg: "rgba(255,255,255,.04)",
     cardBorder: "rgba(255,255,255,.1)",
     icon: (
-      <path d="M11 18.5S3.5 13.3 3.5 8.3A3.8 3.8 0 0 1 11 6a3.8 3.8 0 0 1 7.5 2.3C18.5 13.3 11 18.5 11 18.5Z" stroke="#9a9aae" strokeWidth="1.7" strokeLinejoin="round" />
+      <path d="M4 16h3l2-4h6l2 4h3M8 12l1.5-5h5L16 12M9 19a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3Zm6 0a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3Z" stroke="#9a9aae" strokeWidth="1.7" strokeLinejoin="round" />
     ),
     iconBg: "rgba(255,255,255,.05)",
     iconBorder: "rgba(255,255,255,.1)",
@@ -616,7 +616,7 @@ export function ConnectedDashboard({
             </span>
             <span style={{ fontSize: 12, fontWeight: 600, color: "#8a8a9c" }}>
               <span style={{ color: "#34d399", fontWeight: 700 }}>
-                88,000,000
+                88,235,294
               </span>{" "}
               circulating /{" "}
               <span style={{ color: "#f3f3f8", fontWeight: 700 }}>
@@ -634,7 +634,7 @@ export function ConnectedDashboard({
                 height: 140,
                 borderRadius: 999,
                 background:
-                  "conic-gradient(#34d399 0 8.8%,#a78bfa 8.8% 10.1%,#8b5cf6 10.1% 55.1%,#5a4b8f 55.1% 70.1%,#3d3d52 70.1% 100%)",
+                  "conic-gradient(#34d399 0 8.82%,#a78bfa 8.82% 10.12%,#8b5cf6 10.12% 55.12%,#5a4b8f 55.12% 70.12%,#3d3d52 70.12% 100%)",
               }}
             >
               <div
@@ -683,7 +683,7 @@ export function ConnectedDashboard({
               }}
             >
               {[
-                { color: "#34d399", label: "Public / IDO", pct: "8.8%" },
+                { color: "#34d399", label: "Public / IDO", pct: "8.82%" },
                 { color: "#a78bfa", label: "Liquidity", pct: "1.3%" },
                 {
                   color: "#8b5cf6",
@@ -705,7 +705,7 @@ export function ConnectedDashboard({
                 {
                   color: "#3d3d52",
                   label: "Treasury / Reserve",
-                  pct: "29.9%",
+                  pct: "29.88%",
                 },
               ].map((row) => (
                 <div
@@ -778,19 +778,19 @@ export function ConnectedDashboard({
             }}
           >
             {[
-              { label: "LAUNCH PRICE", value: "$0.17" },
+              { label: "ISSUE PRICE FLOOR", value: "$0.17" },
               {
                 label: (
                   <>
-                    MARKET CAP{" "}
+                    INITIAL FDV{" "}
                     <span style={{ fontWeight: 500, color: "#7e7e95" }}>
-                      (derived)
+                      (@ $0.17)
                     </span>
                   </>
                 ),
-                value: "$14.96M",
+                value: "$170M",
               },
-              { label: "LIQUIDITY POOL", value: "$2,250,000" },
+              { label: "IDO RAISE TARGET", value: "$15,000,000" },
               { label: "TOKEN", value: "ADINA", accent: true },
             ].map((item, i) => (
               <div
@@ -1142,7 +1142,8 @@ export function ConnectedDashboard({
               letterSpacing: "-0.02em",
             }}
           >
-            Allocate community treasury toward job platform launch incentives
+            Allocate community treasury toward employment marketplace launch
+            incentives
           </h3>
           <p
             style={{
@@ -1154,8 +1155,8 @@ export function ConnectedDashboard({
             }}
           >
             Direct ecosystem resources toward launch incentives for the
-            decentralized job platform. Vote weight is proportional to ADINA held
-            at the snapshot block.
+            decentralized employment marketplace. Vote weight is proportional to
+            ADINA held at the snapshot block.
           </p>
 
           <div
@@ -1494,7 +1495,7 @@ function RoadmapSection() {
             }
             period="Q4 2026"
             items={[
-              "ADINA Token IDO",
+              "Genesis Public IDO (Uniswap CCA)",
               "Token Dashboard",
               "Community governance",
             ]}
@@ -1536,7 +1537,7 @@ function RoadmapSection() {
             }
             period="Next"
             items={[
-              "Decentralized Job Platform",
+              "Decentralized Employment Marketplace",
               "Non-Custodial Wallet",
               "Staking",
             ]}
@@ -1578,7 +1579,7 @@ function RoadmapSection() {
             }
             period="Later"
             items={[
-              "Freelance Hub",
+              "Gig Economy Platform",
               "Smart Contract Hub",
               "On-chain reputation",
             ]}
@@ -1620,9 +1621,9 @@ function RoadmapSection() {
             }
             period="Ecosystem expansion"
             items={[
-              "Carbon Credits Market",
-              "Nutraceuticals Hub",
-              "Adina Connect",
+              "Carbon Credit Trading Platform",
+              "Nutraceuticals Retail Platform",
+              "Performance Racing Team Platform",
             ]}
             itemStyle={{ color: "#3d3d52", type: "dot" as const }}
             textColor="#a6a6b8"
