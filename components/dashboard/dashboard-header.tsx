@@ -63,8 +63,10 @@ export function DashboardHeader({
         borderBottom: "1px solid rgba(255,255,255,.08)",
       }}
     >
-      <div className="dashboard-header-inner">
-        <div style={{ display: "flex", alignItems: "center", gap: 12, minWidth: 0 }}>
+      <div
+        className={`dashboard-header-inner${connected ? " has-wallet-row" : ""}`}
+      >
+        <div className="dashboard-header-brand">
           <Image
             src="/dashboard/logo.png"
             alt="Adina Labs"
@@ -78,33 +80,9 @@ export function DashboardHeader({
               filter: "drop-shadow(0 0 14px rgba(90,160,255,.45))",
             }}
           />
-          <div
-            style={{
-              display: "flex",
-              flexDirection: "column",
-              lineHeight: 1.05,
-              minWidth: 0,
-            }}
-          >
-            <span
-              style={{
-                fontWeight: 800,
-                fontSize: 17,
-                letterSpacing: "-0.02em",
-              }}
-            >
-              Adina Labs
-            </span>
-            <span
-              style={{
-                fontWeight: 500,
-                fontSize: 11,
-                color: "#8a8a9c",
-                letterSpacing: ".02em",
-              }}
-            >
-              TOKEN DASHBOARD
-            </span>
+          <div className="dashboard-header-brand-text">
+            <span className="dashboard-header-title">Adina Labs</span>
+            <span className="dashboard-header-subtitle">TOKEN DASHBOARD</span>
           </div>
         </div>
 
@@ -135,17 +113,7 @@ export function DashboardHeader({
           })}
         </nav>
 
-        <div className="dashboard-header-actions">
-          <button
-            type="button"
-            className="dashboard-header-menu-btn"
-            aria-expanded={menuOpen}
-            aria-label={menuOpen ? "Close menu" : "Open menu"}
-            onClick={() => setMenuOpen((open) => !open)}
-          >
-            {menuOpen ? "✕" : "☰"}
-          </button>
-
+        <div className="dashboard-header-wallet-slot">
           {connected ? (
             <div
               role="button"
@@ -178,7 +146,7 @@ export function DashboardHeader({
           ) : (
             <button
               type="button"
-              className="dashboard-connect-btn"
+              className="dashboard-connect-btn dashboard-connect-desktop"
               onClick={onOpenModal}
             >
               <span className="dashboard-connect-label-long">Connect Wallet</span>
@@ -186,6 +154,16 @@ export function DashboardHeader({
             </button>
           )}
         </div>
+
+        <button
+          type="button"
+          className="dashboard-header-menu-btn"
+          aria-expanded={menuOpen}
+          aria-label={menuOpen ? "Close menu" : "Open menu"}
+          onClick={() => setMenuOpen((open) => !open)}
+        >
+          {menuOpen ? "✕" : "☰"}
+        </button>
       </div>
 
       <nav
@@ -209,6 +187,18 @@ export function DashboardHeader({
             </a>
           );
         })}
+        {!connected ? (
+          <button
+            type="button"
+            className="dashboard-connect-btn dashboard-connect-mobile-nav"
+            onClick={() => {
+              setMenuOpen(false);
+              onOpenModal();
+            }}
+          >
+            Connect Wallet
+          </button>
+        ) : null}
       </nav>
     </header>
   );

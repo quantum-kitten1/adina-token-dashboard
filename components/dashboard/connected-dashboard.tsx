@@ -37,8 +37,8 @@ const ONBOARDING_STEPS = [
   {
     done: false,
     num: "3",
-    title: "Cast your first vote",
-    desc: "Use your 235 votes in governance.",
+    title: "Preview governance voting",
+    desc: "Try the sample proposal UI.",
     active: false,
   },
   {
@@ -938,23 +938,36 @@ export function ConnectedDashboard({
               style={{
                 fontSize: 12,
                 fontWeight: 600,
-                color: "#c9b8ff",
+                color: "#f6b078",
                 padding: "4px 11px",
                 borderRadius: 999,
-                background: "rgba(139,92,246,.18)",
-                border: "1px solid rgba(139,92,246,.35)",
+                background: "rgba(246,133,27,.12)",
+                border: "1px solid rgba(246,133,27,.32)",
               }}
             >
-              1 active proposal
+              Preview · not live
             </span>
           </div>
           <div style={{ fontSize: 13, color: "#a6a6b8", fontWeight: 500 }}>
-            Your voting power{" "}
+            Sample voting power{" "}
             <span style={{ color: "#c9b8ff", fontWeight: 700 }}>
               235 votes
             </span>
           </div>
         </div>
+
+        <p
+          style={{
+            margin: "0 0 18px",
+            fontSize: 13,
+            lineHeight: 1.55,
+            color: "#8a8a9c",
+            maxWidth: 760,
+          }}
+        >
+          Community governance is planned for Phase 2. The proposal below is a
+          dashboard preview only and does not accept on-chain votes yet.
+        </p>
 
         <div
           style={{
@@ -987,30 +1000,19 @@ export function ConnectedDashboard({
               style={{
                 fontSize: 11,
                 fontWeight: 600,
-                color: "#34d399",
+                color: "#f6b078",
                 padding: "3px 9px",
                 borderRadius: 999,
-                background: "rgba(52,211,153,.12)",
-                border: "1px solid rgba(52,211,153,.3)",
-                display: "flex",
-                alignItems: "center",
-                gap: 5,
+                background: "rgba(246,133,27,.12)",
+                border: "1px solid rgba(246,133,27,.32)",
               }}
             >
-              <span
-                style={{
-                  width: 6,
-                  height: 6,
-                  borderRadius: 999,
-                  background: "#34d399",
-                }}
-              />
-              Voting open
+              Preview only
             </span>
             <span
               style={{ fontSize: 12, color: "#8a8a9c", fontWeight: 500 }}
             >
-              Closes in 4 days
+              UI mock · no on-chain vote
             </span>
           </div>
           <h3
@@ -1370,7 +1372,6 @@ function RoadmapSection() {
             items={[
               "Genesis Public IDO (Uniswap CCA)",
               "Token Dashboard",
-              "Community governance",
             ]}
             itemStyle={{ color: "#34d399", type: "check" as const }}
             textColor="#c9c9d6"
@@ -1413,6 +1414,7 @@ function RoadmapSection() {
               "Decentralized Employment Marketplace",
               "Non-Custodial Wallet",
               "Smart Contract Hub",
+              "Community governance",
             ]}
             itemStyle={{ color: "#8b5cf6", type: "dot" as const }}
             textColor="#c9c9d6"
@@ -1677,34 +1679,11 @@ function EcosystemSection({ groups }: { groups: EcosystemGroups }) {
                 const content = (
                   <>
                     <span
-                      style={{
-                        position: "absolute",
-                        top: 16,
-                        right: 16,
-                        fontSize: 11,
-                        fontWeight: 700,
-                        color: accent ? "#c9b8ff" : "#9a9aae",
-                        padding: "4px 10px",
-                        borderRadius: 999,
-                        background: accent
-                          ? "rgba(139,92,246,.18)"
-                          : "rgba(255,255,255,.05)",
-                        border: accent
-                          ? "1px solid rgba(139,92,246,.4)"
-                          : "1px solid rgba(255,255,255,.1)",
-                      }}
+                      className={`dashboard-ecosystem-badge${accent ? " is-accent" : ""}`}
                     >
                       {item.badge}
                     </span>
-                    <h4
-                      style={{
-                        margin: "0 0 8px",
-                        paddingRight: 96,
-                        fontSize: 16,
-                        fontWeight: 700,
-                        color: "#f3f3f8",
-                      }}
-                    >
+                    <h4 className="dashboard-ecosystem-title">
                       {item.title}
                       {"href" in item && item.href ? (
                         <span
@@ -1719,16 +1698,7 @@ function EcosystemSection({ groups }: { groups: EcosystemGroups }) {
                         </span>
                       ) : null}
                     </h4>
-                    <p
-                      style={{
-                        margin: 0,
-                        fontSize: 13,
-                        lineHeight: 1.55,
-                        color: "#a6a6b8",
-                      }}
-                    >
-                      {item.desc}
-                    </p>
+                    <p className="dashboard-ecosystem-desc">{item.desc}</p>
                   </>
                 );
 
@@ -1755,6 +1725,7 @@ function EcosystemSection({ groups }: { groups: EcosystemGroups }) {
                       href={item.href}
                       target="_blank"
                       rel="noopener noreferrer"
+                      className="dashboard-ecosystem-card"
                       style={style}
                     >
                       {content}
@@ -1763,7 +1734,7 @@ function EcosystemSection({ groups }: { groups: EcosystemGroups }) {
                 }
 
                 return (
-                  <div key={item.title} style={style}>
+                  <div key={item.title} className="dashboard-ecosystem-card" style={style}>
                     {content}
                   </div>
                 );
